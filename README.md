@@ -39,7 +39,49 @@
 <!-- The path a submission takes, from arriving to the label a reader sees.
      Six or seven steps — this is the trace you wrote in Milestone 1. -->
 
+1. **Arrive:** The user sends the text and their `creator_id` to `POST /submit`.
 
+2. **Validate:** `app.py` checks that the text exists and that its length is in an acceptable range. If it is missing, too short or too long, the request is rejected with an error before any model runs.
+
+3. **Signal one:** `detector.py` measures how predictable the text is to a language model and adds `model_score` (0–1, higher = more AI-like).
+
+4. **Signal two:** `stylometry.py` measures the shape of the text (sentence lengths, word repetition) and adds `style_score` (0–1, higher = more AI-like).
+
+5. **Combine:** `scoring.py` merges the two scores into one `confidence` score.
+
+6. **Label:** Based on that score, the text gets a guess, "human", "unsure" or "AI", plus a plain-language sentence for the reader.
+
+7. **Log and respond:** `audit.py` stores both signal scores, the combined score and the label under a new `content_id`. The result goes back to the user, who can use that `content_id` to appeal through `POST /appeal`.
+
+### Tracing a false positive
+
+A real writer, for example a second-language student using simple, common words, submits their own work. Both signals read it as AI-like, so it gets a high score (above 0.65) and the label tells them it looks AI-generated. Their only recourse is to send their `content_id` and an explanation to `POST /appeal`, which moves the item to `under_review` for a human to check. Because the people most likely to be wrongly accused have the least room to argue back, the AI threshold should be set high, the "unsure" range should be wide, and the label should never read as an accusation.
+
+### Endpoint contract
+
+**`POST /submit`**: submit a piece of text to be checked.
+
+- **In:**
+  - `text` (string, required, non-empty)
+  - `creator_id` (string, optional, defaults to `"unknown"`)
+- **Out (200):**
+  - `content_id` (string)
+  - `creator_id` (string)
+  - `guess` (`"ai"` / `"human"` / `"unsure"`)
+  - `confidence` (float 0–1, higher = more likely AI)
+  - `label` (string, the sentence the reader sees)
+  - `model_score` (float 0–1)
+  - `style_score` (float 0–1)
+- **Out (400):** `{"error": "bad_request", "message": "..."}` if `text` is missing, empty or too long
+
+**`POST /appeal`**: a writer disputes a decision.
+
+- **In:**
+  - `content_id` (string, required, must come from an earlier `/submit`)
+  - `reasoning` (string, required, non-empty)
+- **Out (200):** `content_id`, `status: "under_review"`, `message` (a confirmation sentence)
+- **Out (404):** `{"error": "not_found", "message": "..."}` if the `content_id` doesn't exist
+- **Out (400):** `{"error": "bad_request", "message": "..."}` if a field is missing
 
 ---
 
@@ -53,26 +95,26 @@
 
 ### Signal one — the model signal
 
-**What it measures:**
+**What it measures:** How predictable the text is to a language model (gpt2). For each word, it checks how likely that word was given the words before it, and averages this into perplexity. Low perplexity means a high, AI-like score.
 
-**Why that might differ between human and AI writing:**
+**Why that might differ between human and AI writing:** An AI writes by choosing high-probability words, so its text is easy for a model to predict. Humans use lower-probability words from time to time: unusual choices, specific details, abrupt turns.
 
-**What it can't see:**
+**What it can't see:** Predictable is not the same as AI-written. Beginners and second-language writers often stick to simple, common words, which are highly predictable, so the model may wrongly label their real work as AI-generated.
 
 ### Signal two — the style signal
 
-**What it measures:**
+**What it measures:** The shape of the text rather than its meaning: how much sentence lengths vary, and how often words repeat.
 
-**Why that might differ between human and AI writing:**
+**Why that might differ between human and AI writing:** AI tends to write sentences of roughly equal length, all close to the average, with a narrower vocabulary. Human writing is uneven: a very short sentence can sit next to a very long one.
 
-**What it can't see:**
+**What it can't see:** It cannot understand the content. Anyone can fool it without changing what the text says, by restructuring sentences, adding a few typos, or splitting sentences into shorter parts.
 
 ### The combining rule
 
 <!-- Write the rule in words, then give the numbers. What happens when the two
      signals disagree? -->
 
-**The rule:**
+**The rule:** when two signals disagree, it is highly possible that the text is not AI-generated
 
 **The numbers:**
 
