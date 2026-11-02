@@ -199,17 +199,50 @@ def submit():
     what should this do when `text` is missing, empty, or enormous? A crash on
     a malformed input is one of the most common real failures there is.
     """
-    payload = request.get_json(silent=True) or {}
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict):
+        payload = {}
+    text = payload.get("text")
+    creator_id = payload.get("creator_id") or "unknown"
 
-    # TODO: delete this and build the route.
+    # Validate before any model runs, and log nothing for bad input (criteria.md #5).
+    if not isinstance(text, str) or not text.strip():
+        return bad_request('Send JSON with a non-empty "text".')
+    if len(text) > config.MAX_TEXT_CHARS:
+        return bad_request(f"Text is too long — the limit is {config.MAX_TEXT_CHARS} characters.")
+
+    import detector
+    try:
+        model_score = detector.model_signal(text)
+    except ValueError as exc:  # too short to score
+        return bad_request(str(exc))
+
+    content_id = f"c_{uuid.uuid4().hex[:12]}"
+    guess, label = "unsure", "PLACEHOLDER — labels come in Milestone 5."
+    confidence = model_score  # placeholder until Milestone 4 adds the second signal
+
+    audit.log_decision(
+        content_id=content_id,
+        creator_id=creator_id,
+        guess=guess,
+        model_score=model_score,
+        combined_score=confidence,
+        label=label,
+    )
+
     return jsonify({
-        "error": "not_implemented",
-        "message": "POST /submit isn't built yet — see the TODO in app.py.",
-        "you_sent": {
-            "text_length": len(payload.get("text", "")),
-            "creator_id": payload.get("creator_id"),
-        },
-    }), 501
+        "content_id": content_id,
+        "creator_id": creator_id,
+        "guess": guess,
+        "confidence": confidence,
+        "label": label,
+        "model_score": model_score,
+        "style_score": None,
+    })
+
+
+def bad_request(message):
+    return jsonify({"error": "bad_request", "message": message}), 400
 
 
 @app.post("/appeal")
