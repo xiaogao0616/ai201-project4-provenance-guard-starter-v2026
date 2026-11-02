@@ -160,6 +160,7 @@ A plain human paragraph with simple words but mixed sentence lengths ("I like fo
      sounding like an accusation, because the person reading it may well have
      written every word themselves. -->
 
+The student most likely to see this message is someone like the second-language writer I traced in Milestone 1 and later tested, so I start by saying it isn't a judgment about them. Otherwise "we can't tell" reads like a quiet accusation. I also name plain styles and second-language writing on purpose, because those are exactly the cases my system confuses with AI. Saying so is more honest than letting the student guess why they got this result.
 
 
 ---
@@ -247,17 +248,17 @@ $ curl "http://127.0.0.1:5000/log?limit=2"
 
 ## How I Used AI
 
-**Moment 1**
+**Moment 1: Tightening my acceptance criteria**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked AI to check whether each criterion in `criteria.md` could be verified by someone else.
+- *What came back:* It pointed out vague wording in criteria 2 and 5. For example, "AI score" didn't say which score, and the criterion didn't say where the test passages would come from.
+- *What I changed:* I changed it to "combined confidence score" and added the two sources myself: unedited ChatGPT output for the AI set, and my own past essays for the human set.
 
-**Moment 2**
+**Moment 2: Choosing the AI threshold**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked AI how my combination rule would treat the second-language student compared with real AI text.
+- *What came back:* It showed data where the student's scores and the AI texts' scores were almost the same, so any threshold that caught most of the AI text would also flag the student.
+- *What I changed:* I decided to raise the AI threshold to 0.75. That means some AI text will get through as "unsure", but I'd rather miss some AI writing than wrongly accuse a real student.
 
 <!-- ═══════════════════════ UNIT 8 — THE TEST ═══════════════════════ -->
 
