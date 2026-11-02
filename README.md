@@ -114,9 +114,20 @@ A real writer, for example a second-language student using simple, common words,
 <!-- Write the rule in words, then give the numbers. What happens when the two
      signals disagree? -->
 
-**The rule:** when two signals disagree, it is highly possible that the text is not AI-generated
+**The rule:** Average the two signals with equal weight, then use a high bar for "AI". When the two signals disagree, the average lands in the middle, and a wide "unsure" band catches it. I would rather let some AI text through than call a real student's work AI.
 
-**The numbers:**
+**The numbers:** `combined = 0.5 × model_score + 0.5 × style_score`. Below 0.35 is "human", 0.35–0.75 is "unsure", above 0.75 is "AI". I raised the AI threshold from the starter's 0.65 to 0.75 because a plain, second-language-style paragraph I tested combined to 0.73, and my criteria.md #1 allows zero of those to be labeled AI.
+
+Calibration (four inputs from Milestone 4):
+
+| Input | model_score | style_score | combined |
+|---|---|---|---|
+| Clearly AI | 0.79 | 0.61 | 0.70 |
+| Clearly human | 0.38 | 0.11 | 0.25 |
+| Plain human (second-language style) | 0.85 | 0.60 | 0.73 |
+| Lightly-edited AI | 0.68 | 0.79 | 0.74 |
+
+The cost of this choice: clearly-AI and lightly-edited AI text also land in "unsure". On these inputs, the plain human paragraph and the AI paragraph look almost identical to both signals, so no threshold separates them. I also found that type-token ratio barely moved (0.75–0.84 for all four), so it gets the smallest weight inside `style_signal`.
 
 **Where it lives:** `scoring.py::combine_signals`
 
@@ -124,6 +135,8 @@ A real writer, for example a second-language student using simple, common words,
      somewhere else, say where. -->
 
 **A case where my two signals split, and what my rule does with it:**
+
+A plain human paragraph with simple words but mixed sentence lengths ("I like football. On Saturday morning my brother and I go to the big park near our house and we play with our friends until it is time for lunch. It is fun. ...") scored **model 0.84** (simple words are predictable, so it looks AI) but **style 0.43** (the sentence lengths vary, so it looks human). The average is 0.63, which lands in "unsure" instead of accusing the writer.
 
 
 

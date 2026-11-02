@@ -64,8 +64,13 @@ def sentence_length_spread(text: str) -> float:
     `stdev` raises on fewer than two values. Decide what that should return
     before the attack set decides for you.
     """
-    # TODO: replace this
-    return 0.0
+    lengths = [len(words(s)) for s in sentences(text)]
+    lengths = [n for n in lengths if n]
+    # One sentence has no spread to measure; 0.0 means "no evidence", and
+    # style_signal treats it as neutral rather than as AI-like.
+    if len(lengths) < 2:
+        return 0.0
+    return statistics.stdev(lengths) / statistics.mean(lengths)
 
 
 def type_token_ratio(text: str) -> float:
@@ -80,8 +85,9 @@ def type_token_ratio(text: str) -> float:
     directly comparable on it, and if your test inputs vary a lot in length,
     that alone can look like a signal.
     """
-    # TODO: replace this
-    return 0.0
+    # Only the first 100 words, so long and short texts are comparable.
+    w = words(text)[:100]
+    return len(set(w)) / len(w) if w else 0.0
 
 
 def punctuation_density(text: str) -> float:
@@ -94,8 +100,10 @@ def punctuation_density(text: str) -> float:
         more interesting than full stops, because they vary more between
         writers.
     """
-    # TODO: replace this
-    return 0.0
+    # Only the varied marks, per word. Commas are left out: AI uses them
+    # heavily in lists, so on calibration they scored the same as human text.
+    w = words(text)
+    return len(re.findall(r"[;:()\-—–!?\"]", text)) / len(w) if w else 0.0
 
 
 # ── Combining them ───────────────────────────────────────────────────────────
@@ -122,8 +130,19 @@ def style_signal(text: str) -> float:
     you trust it. Plain and ordinary, not formal: formal prose reads as *human*
     to signal one, and it is plain writing that gets accused.
     """
-    # TODO: replace this
-    return 0.5
+    def ai_ish(value, human_at):
+        """0 at or past the typical human value, 1 at zero."""
+        return min(max(1 - value / human_at, 0.0), 1.0)
+
+    # Anchors come from the calibration inputs: human spread ~0.6+,
+    # human varied punctuation ~0.05+ per word, human TTR (first 100 words) ~0.9.
+    spread = sentence_length_spread(text)
+    spread_score = 0.5 if spread == 0.0 else ai_ish(spread, 0.6)  # one sentence: neutral
+    punct_score = ai_ish(punctuation_density(text), 0.05)
+    ttr_score = ai_ish(type_token_ratio(text) - 0.6, 0.3)  # TTR rarely drops below 0.6
+
+    # Spread separated the calibration inputs best; TTR barely moved, so it counts least.
+    return round(0.5 * spread_score + 0.3 * punct_score + 0.2 * ttr_score, 4)
 
 
 if __name__ == "__main__":
