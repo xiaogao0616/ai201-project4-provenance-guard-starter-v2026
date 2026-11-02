@@ -222,7 +222,7 @@ def submit():
     confidence = scoring.combine_signals(model_score, style_score)
 
     content_id = f"c_{uuid.uuid4().hex[:12]}"
-    guess, label = "unsure", "PLACEHOLDER — labels come in Milestone 5."
+    guess, label = scoring.score_to_label(confidence)
 
     audit.log_decision(
         content_id=content_id,
@@ -269,14 +269,30 @@ def appeal():
     to the person on the other end. It's the only thing standing between a
     wrong accusation and nothing at all.
     """
-    payload = request.get_json(silent=True) or {}
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict):
+        payload = {}
+    content_id = payload.get("content_id")
+    reasoning = payload.get("reasoning")
 
-    # TODO: delete this and build the route.
+    if not isinstance(content_id, str) or not content_id.strip():
+        return bad_request('Send JSON with a "content_id" from an earlier submission.')
+    if not isinstance(reasoning, str) or not reasoning.strip():
+        return bad_request('Send a non-empty "reasoning" explaining the appeal.')
+
+    entries = audit.entries_for(content_id)
+    if not entries:
+        return jsonify({
+            "error": "not_found",
+            "message": f"No submission with content_id {content_id!r}.",
+        }), 404
+
+    audit.log_appeal(content_id, entries[0].get("creator_id", "unknown"), reasoning)
     return jsonify({
-        "error": "not_implemented",
-        "message": "POST /appeal isn't built yet — see the TODO in app.py.",
-        "you_sent": payload,
-    }), 501
+        "content_id": content_id,
+        "status": "under_review",
+        "message": "Thanks — your appeal has been recorded and a person will review this decision.",
+    })
 
 
 # ── Already works ─────────────────────────────────────────────────────────────

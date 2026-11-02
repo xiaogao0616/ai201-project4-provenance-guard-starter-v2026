@@ -151,9 +151,9 @@ A plain human paragraph with simple words but mixed sentence lengths ("I like fo
 
 | Label | Score range | The exact text a reader sees |
 |---|---|---|
-| high-confidence human |  |  |
-| unsure |  |  |
-| high-confidence AI |  |  |
+| high-confidence human | 0.00 – 0.35 | "We think this was most likely written by a person." |
+| unsure | 0.35 – 0.75 | "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language." |
+| high-confidence AI | 0.75 – 1.00 | "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look." |
 
 **Why I worded the "unsure" one this way:**
 <!-- It's the hardest of the three. It has to admit uncertainty without
@@ -179,11 +179,19 @@ A plain human paragraph with simple words but mixed sentence lengths ("I like fo
 ```bash
 $ curl -X POST http://127.0.0.1:5000/submit \
   -H "Content-Type: application/json" \
-  -d '{"text": "...", "creator_id": "..."}'
+  -d '{"text": "Social media has become an important part of modern society. It allows people to connect with friends and family. It also provides a platform for sharing information and ideas. However, it is important to be aware of the potential risks associated with social media use.", "creator_id": "alex"}'
 ```
 
 ```json
-
+{
+  "confidence": 0.7894,
+  "content_id": "c_877f10ab028e",
+  "creator_id": "alex",
+  "guess": "ai",
+  "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.",
+  "model_score": 0.9494,
+  "style_score": 0.6295
+}
 ```
 
 **An appeal**
@@ -191,21 +199,48 @@ $ curl -X POST http://127.0.0.1:5000/submit \
 ```bash
 $ curl -X POST http://127.0.0.1:5000/appeal \
   -H "Content-Type: application/json" \
-  -d '{"content_id": "...", "reasoning": "..."}'
+  -d '{"content_id": "c_877f10ab028e", "reasoning": "I wrote this myself for my sociology class. I keep my sentences simple because English is my second language."}'
 ```
 
 ```json
-
+{
+  "content_id": "c_877f10ab028e",
+  "message": "Thanks — your appeal has been recorded and a person will review this decision.",
+  "status": "under_review"
+}
 ```
 
 **What the log shows afterwards**
 
 ```bash
-$ curl "http://127.0.0.1:5000/log?limit=3"
+$ curl "http://127.0.0.1:5000/log?limit=2"
 ```
 
 ```json
-
+{
+  "count": 2,
+  "entries": [
+    {
+      "combined_score": 0.7894,
+      "content_id": "c_877f10ab028e",
+      "creator_id": "alex",
+      "guess": "ai",
+      "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.",
+      "model_score": 0.9494,
+      "status": "decided",
+      "style_score": 0.6295,
+      "timestamp": "2026-11-02T02:50:46+00:00"
+    },
+    {
+      "content_id": "c_877f10ab028e",
+      "creator_id": "alex",
+      "event": "appeal",
+      "reasoning": "I wrote this myself for my sociology class. I keep my sentences simple because English is my second language.",
+      "status": "under_review",
+      "timestamp": "2026-11-02T02:50:46+00:00"
+    }
+  ]
+}
 ```
 
 ---
