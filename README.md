@@ -266,7 +266,7 @@ $ curl "http://127.0.0.1:5000/log?limit=2"
 
 ## Rate Limiting
 
-**My limits:** ___ per minute, ___ per day
+**My limits:** 5 per minute, 50 per day
 
 **Why those numbers and not others:**
 <!-- Think about two people: a real writer submitting their own work a few
@@ -274,16 +274,36 @@ $ curl "http://127.0.0.1:5000/log?limit=2"
      thresholds. Your numbers have to be liveable for the first and hostile to
      the second. -->
 
+A real writer checking their own work submits once, maybe edits and re-checks a few times. Five a minute covers that easily. A script trying to map my thresholds needs hundreds of slightly different submissions, and 5 a minute and 50 a day slows that to a crawl for any one creator. I didn't go lower (like 3 a minute) because someone fixing typos and re-checking quickly could hit it, and a blocked honest writer is the same kind of harm as a false accusation.
+
 **What a caller counts as:** <!-- per address, or per creator_id? They fail
 differently — one script can look like a thousand callers, and one household
 can look like one. -->
+
+Per `creator_id`, falling back to the caller's IP address when there isn't one. The weakness is that `creator_id` is whatever the caller sends, so a script that invents a new `creator_id` for every request is never limited. Counting by address would catch that, but would also lump a whole classroom behind one network into a single caller.
 
 **The run of status codes when I pushed past it:**
 
 <!-- python run_attacks.py --flood 15 -->
 
 ```
+$ python run_attacks.py --flood 15
+200 200 200 200 200 429 429 429 429 429 429 429 429 429 429
 
+10 of 15 were rate limited.
+```
+
+The rejections are in the audit log:
+
+```json
+{
+  "creator_id": "flood_tester",
+  "event": "rejected",
+  "limit": "5 per 1 minute",
+  "reason": "rate_limited",
+  "status": "rejected",
+  "timestamp": "2026-11-09T02:56:39+00:00"
+}
 ```
 
 ---

@@ -153,7 +153,7 @@ def health():
 # ── YOU BUILD THIS ────────────────────────────────────────────────────────────
 
 @app.post("/submit")
-# @limiter.limit(f"{config.RATE_LIMIT_PER_MINUTE}/minute;{config.RATE_LIMIT_PER_DAY}/day")
+@limiter.limit(f"{config.RATE_LIMIT_PER_MINUTE}/minute;{config.RATE_LIMIT_PER_DAY}/day")
 def submit():
     """
     Take a piece of text, decide about it, log the decision, answer.
@@ -209,15 +209,15 @@ def submit():
 
     # Validate before any model runs, and log nothing for bad input (criteria.md #5).
     if not isinstance(text, str) or not text.strip():
-        return bad_request('Send JSON with a non-empty "text".')
+        return bad_request(creator_id, 'Send JSON with a non-empty "text".')
     if len(text) > config.MAX_TEXT_CHARS:
-        return bad_request(f"Text is too long — the limit is {config.MAX_TEXT_CHARS} characters.")
+        return bad_request(creator_id, f"Text is too long — the limit is {config.MAX_TEXT_CHARS} characters.")
 
     import detector
     try:
         model_score = detector.model_signal(text)
     except ValueError as exc:  # too short to score
-        return bad_request(str(exc))
+        return bad_request(creator_id, str(exc))
     style_score = stylometry.style_signal(text)
     confidence = scoring.combine_signals(model_score, style_score)
 
@@ -245,7 +245,9 @@ def submit():
     })
 
 
-def bad_request(message):
+def bad_request(creator_id, message):
+    # A refused request still leaves a trace, as a rejection, never a decision.
+    audit.log_rejection(creator_id=creator_id, reason="bad_request", message=message)
     return jsonify({"error": "bad_request", "message": message}), 400
 
 
@@ -274,14 +276,18 @@ def appeal():
         payload = {}
     content_id = payload.get("content_id")
     reasoning = payload.get("reasoning")
+    creator_id = payload.get("creator_id") or "unknown"
 
     if not isinstance(content_id, str) or not content_id.strip():
-        return bad_request('Send JSON with a "content_id" from an earlier submission.')
+        return bad_request(creator_id, 'Send JSON with a "content_id" from an earlier submission.')
     if not isinstance(reasoning, str) or not reasoning.strip():
-        return bad_request('Send a non-empty "reasoning" explaining the appeal.')
+        return bad_request(creator_id, 'Send a non-empty "reasoning" explaining the appeal.')
 
     entries = audit.entries_for(content_id)
     if not entries:
+        audit.log_rejection(creator_id=creator_id, reason="not_found",
+                            # Not "content_id": entries_for() would then find it and accept a retry.
+                            requested_content_id=content_id)
         return jsonify({
             "error": "not_found",
             "message": f"No submission with content_id {content_id!r}.",
