@@ -1,0 +1,796 @@
+{
+  "count": 81,
+  "entries": [
+    {
+      "combined_score": 0.7382,
+      "content_id": "c_ead716d3e655",
+      "creator_id": "alex",
+      "guess": "unsure",
+      "label": "PLACEHOLDER \u2014 labels come in Milestone 5.",
+      "model_score": 0.7382,
+      "status": "decided",
+      "style_score": null,
+      "timestamp": "2026-11-02T02:41:40+00:00"
+    },
+    {
+      "combined_score": 0.3073,
+      "content_id": "c_7c694e4c17e1",
+      "creator_id": "alex",
+      "guess": "unsure",
+      "label": "PLACEHOLDER \u2014 labels come in Milestone 5.",
+      "model_score": 0.3813,
+      "status": "decided",
+      "style_score": 0.2333,
+      "timestamp": "2026-11-02T02:44:57+00:00"
+    },
+    {
+      "combined_score": 0.7894,
+      "content_id": "c_877f10ab028e",
+      "creator_id": "alex",
+      "guess": "ai",
+      "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.",
+      "model_score": 0.9494,
+      "status": "decided",
+      "style_score": 0.6295,
+      "timestamp": "2026-11-02T02:50:46+00:00"
+    },
+    {
+      "content_id": "c_877f10ab028e",
+      "creator_id": "alex",
+      "event": "appeal",
+      "reasoning": "I wrote this myself for my sociology class. I keep my sentences simple because English is my second language.",
+      "status": "under_review",
+      "timestamp": "2026-11-02T02:50:46+00:00"
+    },
+    {
+      "combined_score": 0.2831,
+      "content_id": "c_2230071df74a",
+      "creator_id": "flood_tester",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.2588,
+      "status": "decided",
+      "style_score": 0.3074,
+      "timestamp": "2026-11-09T02:56:38+00:00"
+    },
+    {
+      "combined_score": 0.2831,
+      "content_id": "c_2eb330285942",
+      "creator_id": "flood_tester",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.2588,
+      "status": "decided",
+      "style_score": 0.3074,
+      "timestamp": "2026-11-09T02:56:38+00:00"
+    },
+    {
+      "combined_score": 0.2831,
+      "content_id": "c_e7244129db24",
+      "creator_id": "flood_tester",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.2588,
+      "status": "decided",
+      "style_score": 0.3074,
+      "timestamp": "2026-11-09T02:56:38+00:00"
+    },
+    {
+      "combined_score": 0.2831,
+      "content_id": "c_c51047d1a928",
+      "creator_id": "flood_tester",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.2588,
+      "status": "decided",
+      "style_score": 0.3074,
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "combined_score": 0.2831,
+      "content_id": "c_98f09d308a5e",
+      "creator_id": "flood_tester",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.2588,
+      "status": "decided",
+      "style_score": 0.3074,
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "flood_tester",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "flood_tester",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "flood_tester",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "flood_tester",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "flood_tester",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "flood_tester",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "flood_tester",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "flood_tester",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "flood_tester",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "flood_tester",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:39+00:00"
+    },
+    {
+      "creator_id": "m1_bad",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T02:56:48+00:00"
+    },
+    {
+      "combined_score": 0.3316,
+      "content_id": "c_c055fa6715cd",
+      "creator_id": "m1_a",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.1131,
+      "status": "decided",
+      "style_score": 0.55,
+      "timestamp": "2026-11-09T02:56:48+00:00"
+    },
+    {
+      "combined_score": 0.6188,
+      "content_id": "c_1023ace589d4",
+      "creator_id": "m1_b",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.7382,
+      "status": "decided",
+      "style_score": 0.4993,
+      "timestamp": "2026-11-09T02:56:48+00:00"
+    },
+    {
+      "combined_score": 0.7927,
+      "content_id": "c_9ec66f35906e",
+      "creator_id": "m1_c",
+      "guess": "ai",
+      "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.",
+      "model_score": 0.9077,
+      "status": "decided",
+      "style_score": 0.6778,
+      "timestamp": "2026-11-09T02:56:48+00:00"
+    },
+    {
+      "combined_score": 0.3893,
+      "content_id": "c_ba5f270accfe",
+      "creator_id": "attacker_EV01",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.1635,
+      "status": "decided",
+      "style_score": 0.6151,
+      "timestamp": "2026-11-09T03:06:30+00:00"
+    },
+    {
+      "combined_score": 0.3406,
+      "content_id": "c_e661d3a386fa",
+      "creator_id": "attacker_EV02",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.5943,
+      "status": "decided",
+      "style_score": 0.0868,
+      "timestamp": "2026-11-09T03:06:30+00:00"
+    },
+    {
+      "combined_score": 0.4202,
+      "content_id": "c_87cb8a4f2cf1",
+      "creator_id": "attacker_EV03",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.6662,
+      "status": "decided",
+      "style_score": 0.1742,
+      "timestamp": "2026-11-09T03:06:30+00:00"
+    },
+    {
+      "combined_score": 0.5727,
+      "content_id": "c_2a3eaa7e88d5",
+      "creator_id": "attacker_EV04",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.6114,
+      "status": "decided",
+      "style_score": 0.534,
+      "timestamp": "2026-11-09T03:06:30+00:00"
+    },
+    {
+      "combined_score": 0.2447,
+      "content_id": "c_9ed933516f21",
+      "creator_id": "attacker_EV05",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.3212,
+      "status": "decided",
+      "style_score": 0.1683,
+      "timestamp": "2026-11-09T03:06:30+00:00"
+    },
+    {
+      "combined_score": 0.4864,
+      "content_id": "c_f689d773bff6",
+      "creator_id": "attacker_EV06",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.5727,
+      "status": "decided",
+      "style_score": 0.4,
+      "timestamp": "2026-11-09T03:06:31+00:00"
+    },
+    {
+      "combined_score": 0.4604,
+      "content_id": "c_c739b017ffa1",
+      "creator_id": "attacker_EV07",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.5862,
+      "status": "decided",
+      "style_score": 0.3345,
+      "timestamp": "2026-11-09T03:06:31+00:00"
+    },
+    {
+      "combined_score": 0.4047,
+      "content_id": "c_c914b07e30f7",
+      "creator_id": "attacker_EV08",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.2452,
+      "status": "decided",
+      "style_score": 0.5643,
+      "timestamp": "2026-11-09T03:06:31+00:00"
+    },
+    {
+      "combined_score": 0.537,
+      "content_id": "c_a9d0592ab6a9",
+      "creator_id": "attacker_EV09",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.7042,
+      "status": "decided",
+      "style_score": 0.3697,
+      "timestamp": "2026-11-09T03:06:31+00:00"
+    },
+    {
+      "combined_score": 0.8255,
+      "content_id": "c_46f7176f4498",
+      "creator_id": "attacker_EV10",
+      "guess": "ai",
+      "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.",
+      "model_score": 0.9792,
+      "status": "decided",
+      "style_score": 0.6717,
+      "timestamp": "2026-11-09T03:06:31+00:00"
+    },
+    {
+      "combined_score": 0.5848,
+      "content_id": "c_bdfb5b662670",
+      "creator_id": "attacker_FP01",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.6175,
+      "status": "decided",
+      "style_score": 0.5521,
+      "timestamp": "2026-11-09T03:06:31+00:00"
+    },
+    {
+      "combined_score": 0.7324,
+      "content_id": "c_1e82cadbc3ba",
+      "creator_id": "attacker_FP02",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.7387,
+      "status": "decided",
+      "style_score": 0.726,
+      "timestamp": "2026-11-09T03:06:31+00:00"
+    },
+    {
+      "combined_score": 0.7248,
+      "content_id": "c_14094af38163",
+      "creator_id": "attacker_FP03",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.8051,
+      "status": "decided",
+      "style_score": 0.6446,
+      "timestamp": "2026-11-09T03:06:31+00:00"
+    },
+    {
+      "combined_score": 0.6941,
+      "content_id": "c_cc21b5fe82d0",
+      "creator_id": "attacker_FP04",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.8329,
+      "status": "decided",
+      "style_score": 0.5552,
+      "timestamp": "2026-11-09T03:06:32+00:00"
+    },
+    {
+      "combined_score": 0.7849,
+      "content_id": "c_254882f6b428",
+      "creator_id": "attacker_FP05",
+      "guess": "ai",
+      "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.",
+      "model_score": 0.8005,
+      "status": "decided",
+      "style_score": 0.7693,
+      "timestamp": "2026-11-09T03:06:32+00:00"
+    },
+    {
+      "combined_score": 0.6796,
+      "content_id": "c_fca4c3730c13",
+      "creator_id": "attacker_FP06",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.8814,
+      "status": "decided",
+      "style_score": 0.4778,
+      "timestamp": "2026-11-09T03:06:32+00:00"
+    },
+    {
+      "combined_score": 0.6908,
+      "content_id": "c_f25bbdb81da6",
+      "creator_id": "attacker_FP07",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.8816,
+      "status": "decided",
+      "style_score": 0.5,
+      "timestamp": "2026-11-09T03:06:32+00:00"
+    },
+    {
+      "combined_score": 0.3807,
+      "content_id": "c_8f32cf09dde3",
+      "creator_id": "attacker_FP08",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.3223,
+      "status": "decided",
+      "style_score": 0.4392,
+      "timestamp": "2026-11-09T03:06:32+00:00"
+    },
+    {
+      "combined_score": 0.3812,
+      "content_id": "c_d6ada3dd94b5",
+      "creator_id": "attacker_PI01",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.4625,
+      "status": "decided",
+      "style_score": 0.3,
+      "timestamp": "2026-11-09T03:06:32+00:00"
+    },
+    {
+      "combined_score": 0.1855,
+      "content_id": "c_0fe69daea6ff",
+      "creator_id": "attacker_PI02",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.2044,
+      "status": "decided",
+      "style_score": 0.1667,
+      "timestamp": "2026-11-09T03:06:32+00:00"
+    },
+    {
+      "combined_score": 0.4042,
+      "content_id": "c_772a58c5e043",
+      "creator_id": "attacker_PI03",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.5943,
+      "status": "decided",
+      "style_score": 0.2141,
+      "timestamp": "2026-11-09T03:06:32+00:00"
+    },
+    {
+      "combined_score": 0.3794,
+      "content_id": "c_c44931eddc06",
+      "creator_id": "attacker_PI04",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.4998,
+      "status": "decided",
+      "style_score": 0.259,
+      "timestamp": "2026-11-09T03:06:32+00:00"
+    },
+    {
+      "combined_score": 0.3736,
+      "content_id": "c_3527850ff6f5",
+      "creator_id": "attacker_PI05",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.6401,
+      "status": "decided",
+      "style_score": 0.1072,
+      "timestamp": "2026-11-09T03:06:33+00:00"
+    },
+    {
+      "combined_score": 0.5502,
+      "content_id": "c_604410524e4e",
+      "creator_id": "attacker_PI06",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.5583,
+      "status": "decided",
+      "style_score": 0.5421,
+      "timestamp": "2026-11-09T03:06:33+00:00"
+    },
+    {
+      "creator_id": "attacker_MF01",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:33+00:00"
+    },
+    {
+      "creator_id": "attacker_MF02",
+      "event": "rejected",
+      "message": "Text is too short to score \u2014 a few sentences at least.",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:33+00:00"
+    },
+    {
+      "combined_score": 0.275,
+      "content_id": "c_43c86d928a8b",
+      "creator_id": "attacker_MF03",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.0,
+      "status": "decided",
+      "style_score": 0.55,
+      "timestamp": "2026-11-09T03:06:33+00:00"
+    },
+    {
+      "combined_score": 0.3806,
+      "content_id": "c_474e5537884d",
+      "creator_id": "attacker_MF04",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.0112,
+      "status": "decided",
+      "style_score": 0.75,
+      "timestamp": "2026-11-09T03:06:33+00:00"
+    },
+    {
+      "combined_score": 0.7738,
+      "content_id": "c_eba9069180cc",
+      "creator_id": "attacker_MF05",
+      "guess": "ai",
+      "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.",
+      "model_score": 0.9976,
+      "status": "decided",
+      "style_score": 0.55,
+      "timestamp": "2026-11-09T03:06:33+00:00"
+    },
+    {
+      "combined_score": 0.8735,
+      "content_id": "c_6b51c7eb9d01",
+      "creator_id": "attacker_MF06",
+      "guess": "ai",
+      "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.",
+      "model_score": 0.9969,
+      "status": "decided",
+      "style_score": 0.75,
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "combined_score": 0.8282,
+      "content_id": "c_afd349f4324a",
+      "creator_id": "attacker_MF07",
+      "guess": "ai",
+      "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.",
+      "model_score": 0.9064,
+      "status": "decided",
+      "style_score": 0.75,
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_MF08",
+      "event": "rejected",
+      "message": "Text is too long \u2014 the limit is 5000 characters.",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_RQ01",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "combined_score": 0.3948,
+      "content_id": "c_71105bd7fd1a",
+      "creator_id": "unknown",
+      "guess": "unsure",
+      "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+      "model_score": 0.2395,
+      "status": "decided",
+      "style_score": 0.55,
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_RQ03",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_RQ04",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_RQ05",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "combined_score": 0.2996,
+      "content_id": "c_8d1a4bc55685",
+      "creator_id": {
+        "id": "x"
+      },
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.0492,
+      "status": "decided",
+      "style_score": 0.55,
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "unknown",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "unknown",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "unknown",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "unknown",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "unknown",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_RQ12",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "combined_score": 0.2893,
+      "content_id": "c_c3676027e1cf",
+      "creator_id": "attacker_flood",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.0287,
+      "status": "decided",
+      "style_score": 0.55,
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "combined_score": 0.2893,
+      "content_id": "c_a1def750af98",
+      "creator_id": "attacker_flood",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.0287,
+      "status": "decided",
+      "style_score": 0.55,
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "combined_score": 0.2893,
+      "content_id": "c_ebc81a841230",
+      "creator_id": "attacker_flood",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.0287,
+      "status": "decided",
+      "style_score": 0.55,
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "combined_score": 0.2893,
+      "content_id": "c_30cda8438df0",
+      "creator_id": "attacker_flood",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.0287,
+      "status": "decided",
+      "style_score": 0.55,
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "combined_score": 0.2893,
+      "content_id": "c_01faedfc85d3",
+      "creator_id": "attacker_flood",
+      "guess": "human",
+      "label": "We think this was most likely written by a person.",
+      "model_score": 0.0287,
+      "status": "decided",
+      "style_score": 0.55,
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_flood",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_flood",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_flood",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_flood",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_flood",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_flood",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "attacker_flood",
+      "event": "rejected",
+      "limit": "5 per 1 minute",
+      "reason": "rate_limited",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:06:34+00:00"
+    },
+    {
+      "creator_id": "unknown",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:08:32+00:00"
+    },
+    {
+      "creator_id": "unknown",
+      "event": "rejected",
+      "message": "Send JSON with a non-empty \"text\".",
+      "reason": "bad_request",
+      "status": "rejected",
+      "timestamp": "2026-11-09T03:08:32+00:00"
+    }
+  ]
+}
