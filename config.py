@@ -49,6 +49,9 @@ DETECTOR_MAX_TOKENS = 400
 # Longest /submit text accepted, in characters (criteria.md #5).
 MAX_TEXT_CHARS = 5000
 
+# Fewest English words /submit will score; below this both signals guess (unit 8 M5).
+MIN_ENGLISH_WORDS = 5
+
 
 # ─── Scoring (Milestone 4) ───────────────────────────────────────────────────
 # How much each signal counts toward the combined score.

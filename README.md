@@ -544,17 +544,58 @@ Criterion 5: the response to a missing `text` field, and the rejection entry it 
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** One change, input validation in `app.py::submit`, before either signal runs. The route now returns a 400 when the text has fewer than 5 English words (`config.MIN_ENGLISH_WORDS`) or when English letters make up less than half of its visible characters. The message says: "We can only check English prose, so we can't give a result for this text. This is not a judgment about your writing." A non-string `creator_id` also gets a 400. Every refusal is logged as a `rejected` entry. Nothing else changed: same signals, same weights, same thresholds.
 
-**Which diagnosis pointed at it:**
+**Which diagnosis pointed at it:** Mechanism B. The route accepted text that isn't English prose, and both signals then gave confident verdicts on it, including my worst outcome (MF07, Arabic text labeled AI). Before deploying, I ran the rule over every attack text and all 33 of my criteria texts. It refused only MF01–MF07 and none of the human or evasion texts.
 
 ### Attack Run — After
 
 <!-- Same format. `run_attacks.py --label after` -->
 
+Full output: `results/attack_run_2026-11-08_2235_after.md`. I mark the same way as before. Only these rows changed:
 
+| ID | Family | Targeting | Before | After | Verdict before → after |
+|---|---|---|---|---|---|
+| MF03 | malformed | text is control characters | 200 human 0.275 | 400 | BROKE → HELD |
+| MF04 | malformed | text is only punctuation | 200 unsure 0.381 | 400 | BROKE → HELD |
+| MF05 | malformed | text is a very long single word | 200 ai 0.774 | 400 | BROKE → HELD |
+| MF06 | malformed | text is emoji only | 200 ai 0.874 | 400 | BROKE → HELD |
+| MF07 | malformed | text is right-to-left script | 200 ai 0.828 | 400 | BROKE → HELD |
+| RQ06 | malformed | creator_id is an object | 200 human 0.300 | 400 | BROKE → HELD |
 
-**Did it help, and how do I know:**
+Every other row (EV01–10, FP01–08, PI01–06, MF01–02, MF08, RQ01–05, RQ07–12, FL01) came back with the same status, guess and score as the before run, so it keeps the same verdict. As before, RQ10 and RQ11 got 429 in the full run because of the shared IP bucket, and each returned 400 when re-sent alone.
+
+| Family | Attacks | BROKE before | BROKE after |
+|---|---|---|---|
+| evasion | 10 | 9 | 9 |
+| false_positive | 8 | 1 | 1 |
+| prompt_injection | 6 | 3 | 3 |
+| malformed | 20 | 6 | **0** |
+| flood_same_creator | 12 | 0 | 0 |
+| **Total** | **56** | **19** | **13** |
+
+What MF07's writer sees now:
+
+```json
+{
+  "error": "bad_request",
+  "message": "We can only check English prose, so we can't give a result for this text. This is not a judgment about your writing."
+}
+```
+
+### Run Log — After
+
+`run_eval.py --label after` → `results/run_2026-11-08_2235_after.md`; `appeal_eval.py --label after` → `results/appeal_eval_2026-11-08_2235_after.json`.
+
+| Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
+|---|---|---|---|---|---|
+| 1. My own writing labeled AI | ≤ 1 of 10, and 0 of 3 plain non-native | 0/10 (0/3) | 0/10 (0/3) | 0/10 (0/3) | MET |
+| 2. Score gap, AI set vs my essays | avg gap ≥ 0.30 and ≥ 8/10 AI above human median | gap 0.099, 10/10 | gap 0.099, 10/10 | gap 0.099, 10/10 | MISSED |
+| 3. All three labels reachable | ≥ 2 inputs per label | 2/2/2 | 2/2/2 | 2/2/2 | MET |
+| 4. Appeal changes status and is logged | 10 of 10 | 10/10 | 10/10 | 10/10 | MET |
+| 5. Bad input (revised: no decision entry) | 4 of 4 | 4/4 | 4/4 | 4/4 | MET (revised) |
+
+**Did it help, and how do I know:** Yes, for what it targeted, and only that. Broken attacks went from 19 to 13. All six came from the malformed family, which went from 6 broken to 0, and my worst outcome (MF07) no longer accuses anyone. The criteria didn't move. #1 held because the rule didn't refuse any of my writing, and #2 is still missed because input validation can't change how the signals score real English. This was the safe fix, not the big one: the 9 evasions and 3 prompt injections (mechanism A) and FP05 (mechanism C) are untouched. The trade-off is that writers in other languages now get no result at all instead of a wrong one. I think that's honest, but it is a refusal of service.
 
 <!-- Widening the unsure band usually fixes one problem and creates another.
      Reporting that trade honestly is worth full credit. -->

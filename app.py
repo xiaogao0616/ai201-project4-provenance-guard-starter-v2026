@@ -24,6 +24,7 @@ Routes:
     GET  /health      is the service up, and is the model loaded
 """
 
+import re
 import uuid
 
 from flask import Flask, jsonify, request
@@ -207,11 +208,20 @@ def submit():
     text = payload.get("text")
     creator_id = payload.get("creator_id") or "unknown"
 
-    # Validate before any model runs, and log nothing for bad input (criteria.md #5).
+    # Validate before any model runs; bad input never becomes a decision (criteria.md #5).
+    if not isinstance(creator_id, str):
+        return bad_request("unknown", '"creator_id" must be a string.')
     if not isinstance(text, str) or not text.strip():
         return bad_request(creator_id, 'Send JSON with a non-empty "text".')
     if len(text) > config.MAX_TEXT_CHARS:
         return bad_request(creator_id, f"Text is too long — the limit is {config.MAX_TEXT_CHARS} characters.")
+    # Both signals only understand English prose. On anything else (other
+    # scripts, emoji, junk) they gave confident verdicts, so refuse instead.
+    english_words = [w for w in re.findall(r"[A-Za-z']+", text) if re.search(r"[A-Za-z]", w)]
+    if (len(english_words) < config.MIN_ENGLISH_WORDS
+            or len(re.findall(r"[A-Za-z]", text)) < 0.5 * len(re.findall(r"\S", text))):
+        return bad_request(creator_id, "We can only check English prose, so we can't give a result "
+                                       "for this text. This is not a judgment about your writing.")
 
     import detector
     try:
