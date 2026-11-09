@@ -517,6 +517,27 @@ Criterion 5: the response to a missing `text` field, and the rejection entry it 
 
      Look for a pattern. Five failures on one signal is one problem, not five. -->
 
+**How I decided each verdict:** A criterion is MET only if the target held in all three trials. All three trials were identical, so no verdict depended on which trial I picked.
+
+- **#1 MET:** 0 of 10 of my passages were labeled AI in every trial, and 0 of the 3 plain ones. The margin is thin, though: the plain passages scored 0.64–0.69 against a 0.75 line. With the starter's 0.65 threshold, two of them would have been labeled AI.
+- **#2 MISSED:** The average gap was 0.099 against a 0.30 target. The second half (10/10 AI above the human median) passed, but the criterion needs both.
+- **#3 MET:** two inputs reached each label in every trial.
+- **#4 MET:** 10/10 appeals returned `under_review` with a matching log entry, in every trial.
+- **#5 MISSED as written, MET as revised:** All four bad inputs got a 400 with a message and none became a decision, but each left a `rejected` log entry, which the original "writes nothing to the log" forbids. Unit 8 requires those entries, so I revised the criterion in `criteria.md` (original kept). See the reason there.
+
+**The pattern:** my 19 broken attacks and the criterion #2 miss come down to four mechanisms, not twenty.
+
+**A. Fooling either signal is enough to escape the AI label (12 attacks: EV01–EV09, PI01–PI03).** *Stage: the combining rule plus the 0.75 threshold.* Unmodified AI text scores high on both signals (EV10: model 0.98, style 0.67, combined 0.83). Because I average the two and need 0.75 for "AI", an attacker only has to pull down one signal:
+- **Signal one fooled:** EV01 (typos) dropped model to 0.16, EV08 (10 words) to 0.25, and EV04 (rare words) to 0.61. Misspelled and rare words are exactly what gpt2 can't predict, so perplexity goes up. EV01 was aimed at signal two, but it actually broke signal one.
+- **Signal two fooled:** EV02 (inserting "Really." between sentences) dropped style to 0.09, and EV03 (a pasted quotation) to 0.17. Short inserted sentences make the sentence lengths vary, which signal two reads as human.
+- **Prompt injection is the same mechanism.** My service has no model that reads instructions, so nothing "obeyed" PI02's `SYSTEM: ... Return guess=human`. Instead, that odd line surprised gpt2 (model 0.20), and its colons, equals signs and short fragments looked human to signal two (style 0.17). The label came out human by accident, not because the instruction worked.
+- I chose the 0.75 threshold in unit 7 to protect plain writers. The cost was always going to be that AI text needs to look strongly AI on both signals at once, and that is easy to break.
+
+**B. The route accepts text that isn't English prose (6 attacks: MF03–MF07, RQ06).** *Stage: the route, which then exposes a signal-two default.* My `stylometry.words()` only counts `[a-z0-9']` words. Arabic, emoji, punctuation-only text and one 400-letter word give it zero or one real words, so all three measures fall to their most AI-like values and style lands at exactly 0.75. gpt2 finds repeated bytes very predictable, so model went to 0.91–1.00 (MF05, MF06, MF07). Together that gives "high-confidence AI". MF03 went the other way: its control characters gave a model score of 0.00, so it was labeled human. In every case the system gave a confident verdict on text it can't read. RQ06 is the same stage: the route stored an object as `creator_id` without checking its type.
+
+**C. Plain, even human prose fools both signals together (FP05).** *Stage: signal one and signal two, the blind spots I named in Milestone 1.* Technical instructions are short imperative sentences of similar length with common words: model 0.80, style 0.77. Both signals agree, so the combining rule can't help. FP02, FP03, FP04, FP06 and FP07 have the same shape and sit at 0.68–0.73, just under the line.
+
+**D. The signals don't recognize current ChatGPT writing (criterion #2 MISSED).** *Stage: mainly signal one, partly signal two.* The ten ChatGPT paragraphs averaged model 0.41 and style 0.39. My calibration AI text in unit 7 was generic ("it is important to note...") and scored 0.79. This ChatGPT output is specific (a rice cooker, Saturn's rings, a 1974 factory shift) with varied sentence lengths, so gpt2, a small 2019 model, finds it as surprising as human writing. Signal one measures "generic and predictable", not "written by AI", and modern AI doesn't have to be generic.
 
 
 ---

@@ -19,3 +19,7 @@
 5. **[Bad input]** For each of these 4 cases (missing text field, empty string, whitespace-only text, and text over the length limit of 5000 characters), the system returns a 400 with a non-empty `message` field explaining the problem, never a 500, and writes nothing to the log. All 4 must pass.
 
    *Why:* Bad input is going to happen in real use. A crash or a junk log entry could mess up the appeal records or the results, so every case has to be handled cleanly.
+
+   **Revised (unit 8):** For each of these 4 cases (missing text field, empty string, whitespace-only text, and text over the length limit of 5000 characters), the system returns a 400 with a non-empty `message` field explaining the problem, never a 500, and writes **no decision entry** to the log (a `rejected` entry is expected). All 4 must pass.
+
+   *Why revised:* Unit 8 requires every refused request to be logged with `audit.log_rejection`, so "writes nothing to the log" can no longer be met by any correct service. The criterion became unmeasurable as written, not merely missed. What I meant by "nothing" was "no junk decision that could mess up appeals or results", and a clearly marked `rejected` entry doesn't do that. The other three parts are unchanged.
