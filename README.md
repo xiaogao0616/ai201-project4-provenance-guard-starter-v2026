@@ -414,17 +414,91 @@ whose work got caught by it:
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. My own writing labeled AI | ≤ 1 of 10, and 0 of 3 plain non-native | 0/10 (0/3) | 0/10 (0/3) | 0/10 (0/3) | MET |
+| 2. Score gap, AI set vs my essays | avg gap ≥ 0.30 and ≥ 8/10 AI above human median | gap 0.099, 10/10 | gap 0.099, 10/10 | gap 0.099, 10/10 | MISSED |
+| 3. All three labels reachable | ≥ 2 inputs per label | 2/2/2 | 2/2/2 | 2/2/2 | MET |
+| 4. Appeal changes status and is logged | 10 of 10 | 10/10 | 10/10 | 10/10 | MET |
+| 5. Bad input: 400 + message, never 500, nothing in log | 4 of 4 | 4/4 got 400 + message; 4/4 left a rejection entry | same | same | MISSED (as written) |
 
-**Real output from one trial**, pasted as text, naming the file and function
-that produced it:
+All three trials were identical, as expected: neither signal is random.
+
+Produced by `run_eval.py::main` → `results/run_2026-11-08_2230_before.md`, except criterion 4, which `run_eval.py` can't test (an appeal needs a content_id from an earlier submission). I wrote `appeal_eval.py::trial` for it: 10 submissions, then 10 appeals against the returned ids, three trials → `results/appeal_eval_2026-11-08_2230_before.json`.
+
+**Where the test inputs came from:** Criterion 1 uses three short plain passages I wrote in a deliberately simple, non-native style, plus seven chunks of my own past essay on "I Have a Dream". Criterion 2's human set is that same essay split at sentence boundaries into ten chunks, so the two criteria share text and the ten human chunks aren't independent pieces of writing. Criterion 2's AI set is ten paragraphs ChatGPT wrote from one prompt, unedited.
+
+**Real output from one trial** (trial 1), pasted as text:
+
+Criterion 1: the plain passage that came closest to the AI line:
 
 ```json
+{
+  "status": 200,
+  "guess": "unsure",
+  "confidence": 0.692,
+  "model_score": 0.7965,
+  "style_score": 0.5875,
+  "label": "We can't tell either way from this text alone. That isn't a judgment about you or your work. Lots of genuine writing lands here, especially if it's in a plain or simple style or written in someone's second language.",
+  "sent": "I usually eat breakfast in my room. I make two eggs and have a piece o"
+}
+```
 
+Criterion 2: the highest-scoring ChatGPT paragraph, and one ChatGPT paragraph labeled human. AI-set average 0.396 vs human-set average 0.297:
+
+```json
+{
+  "status": 200,
+  "guess": "unsure",
+  "confidence": 0.5112,
+  "model_score": 0.4927,
+  "style_score": 0.5298,
+  "sent": "Living with a roommate. My roommate likes to wash dishes the next morn"
+}
+{
+  "status": 200,
+  "guess": "human",
+  "confidence": 0.3367,
+  "model_score": 0.2336,
+  "style_score": 0.4398,
+  "label": "We think this was most likely written by a person.",
+  "sent": "Starting a campus club. Four people showed up to our first chess meeti"
+}
+```
+
+Criterion 3: one input per label:
+
+```json
+[
+  {"status": 200, "guess": "human", "confidence": 0.3234, "model_score": 0.4264, "style_score": 0.2203, "sent": "I missed the bus again. Third time this week, and honestly? I'd stoppe"},
+  {"status": 200, "guess": "unsure", "confidence": 0.6188, "model_score": 0.7382, "style_score": 0.4993, "sent": "I like my school. My teacher is very kind. Every day I study English a"},
+  {"status": 200, "guess": "ai", "confidence": 0.7894, "model_score": 0.9494, "style_score": 0.6295, "sent": "Social media has become an important part of modern society. It allows"}
+]
+```
+
+Criterion 4: an appeal response and the log entry it left (`appeal_eval.py`):
+
+```json
+{
+  "response": {
+    "content_id": "c_46641bca4239",
+    "message": "Thanks — your appeal has been recorded and a person will review this decision.",
+    "status": "under_review"
+  },
+  "log_entry": {
+    "content_id": "c_46641bca4239",
+    "creator_id": "eval_appeal_1",
+    "event": "appeal",
+    "reasoning": "Trial 1: I wrote this myself.",
+    "status": "under_review",
+    "timestamp": "2026-11-09T03:30:44+00:00"
+  }
+}
+```
+
+Criterion 5: the response to a missing `text` field, and the rejection entry it left in `logs/audit.jsonl`:
+
+```json
+{"status": 400, "guess": null, "confidence": null, "model_score": null, "style_score": null, "label": null, "sent": "{\"creator_id\": \"eval_bad_missing\"}"}
+{"timestamp": "2026-11-09T03:30:43+00:00", "creator_id": "eval_bad_missing", "event": "rejected", "status": "rejected", "reason": "bad_request", "message": "Send JSON with a non-empty \"text\"."}
 ```
 
 **Diagnoses**

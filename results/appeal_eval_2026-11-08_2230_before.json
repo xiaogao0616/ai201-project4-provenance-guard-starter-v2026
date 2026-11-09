@@ -1,0 +1,563 @@
+[
+  {
+    "trial": 1,
+    "passed": 10,
+    "of": 10,
+    "rows": [
+      {
+        "content_id": "c_46641bca4239",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_46641bca4239",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_46641bca4239",
+          "creator_id": "eval_appeal_1",
+          "event": "appeal",
+          "reasoning": "Trial 1: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:44+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_2ee88fb4fbde",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_2ee88fb4fbde",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_2ee88fb4fbde",
+          "creator_id": "eval_appeal_2",
+          "event": "appeal",
+          "reasoning": "Trial 1: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:44+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_8fb39c353b27",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_8fb39c353b27",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_8fb39c353b27",
+          "creator_id": "eval_appeal_3",
+          "event": "appeal",
+          "reasoning": "Trial 1: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:44+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_98add890d007",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_98add890d007",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_98add890d007",
+          "creator_id": "eval_appeal_4",
+          "event": "appeal",
+          "reasoning": "Trial 1: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:44+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_fea9bf19668a",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_fea9bf19668a",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_fea9bf19668a",
+          "creator_id": "eval_appeal_5",
+          "event": "appeal",
+          "reasoning": "Trial 1: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:44+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_58e485e7e838",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_58e485e7e838",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_58e485e7e838",
+          "creator_id": "eval_appeal_6",
+          "event": "appeal",
+          "reasoning": "Trial 1: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_5bd18c04c6e2",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_5bd18c04c6e2",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_5bd18c04c6e2",
+          "creator_id": "eval_appeal_7",
+          "event": "appeal",
+          "reasoning": "Trial 1: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_a491b6c0bf39",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_a491b6c0bf39",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_a491b6c0bf39",
+          "creator_id": "eval_appeal_8",
+          "event": "appeal",
+          "reasoning": "Trial 1: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_5e7f6dd2a4fe",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_5e7f6dd2a4fe",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_5e7f6dd2a4fe",
+          "creator_id": "eval_appeal_9",
+          "event": "appeal",
+          "reasoning": "Trial 1: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_10f754d7406c",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_10f754d7406c",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_10f754d7406c",
+          "creator_id": "eval_appeal_10",
+          "event": "appeal",
+          "reasoning": "Trial 1: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      }
+    ]
+  },
+  {
+    "trial": 2,
+    "passed": 10,
+    "of": 10,
+    "rows": [
+      {
+        "content_id": "c_a2ca3c3a58b8",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_a2ca3c3a58b8",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_a2ca3c3a58b8",
+          "creator_id": "eval_appeal_1",
+          "event": "appeal",
+          "reasoning": "Trial 2: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_fc6e244ca45c",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_fc6e244ca45c",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_fc6e244ca45c",
+          "creator_id": "eval_appeal_2",
+          "event": "appeal",
+          "reasoning": "Trial 2: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_fe8b98c12f3f",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_fe8b98c12f3f",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_fe8b98c12f3f",
+          "creator_id": "eval_appeal_3",
+          "event": "appeal",
+          "reasoning": "Trial 2: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_ad1a6e57015f",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_ad1a6e57015f",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_ad1a6e57015f",
+          "creator_id": "eval_appeal_4",
+          "event": "appeal",
+          "reasoning": "Trial 2: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_8cb7ea1287f8",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_8cb7ea1287f8",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_8cb7ea1287f8",
+          "creator_id": "eval_appeal_5",
+          "event": "appeal",
+          "reasoning": "Trial 2: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_003aaacd95a0",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_003aaacd95a0",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_003aaacd95a0",
+          "creator_id": "eval_appeal_6",
+          "event": "appeal",
+          "reasoning": "Trial 2: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:45+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_e3e8ccb9a7f3",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_e3e8ccb9a7f3",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_e3e8ccb9a7f3",
+          "creator_id": "eval_appeal_7",
+          "event": "appeal",
+          "reasoning": "Trial 2: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:46+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_83cb59a04976",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_83cb59a04976",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_83cb59a04976",
+          "creator_id": "eval_appeal_8",
+          "event": "appeal",
+          "reasoning": "Trial 2: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:46+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_3d9b63aa1de6",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_3d9b63aa1de6",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_3d9b63aa1de6",
+          "creator_id": "eval_appeal_9",
+          "event": "appeal",
+          "reasoning": "Trial 2: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:46+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_16488a9bebdb",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_16488a9bebdb",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_16488a9bebdb",
+          "creator_id": "eval_appeal_10",
+          "event": "appeal",
+          "reasoning": "Trial 2: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:46+00:00"
+        },
+        "pass": true
+      }
+    ]
+  },
+  {
+    "trial": 3,
+    "passed": 10,
+    "of": 10,
+    "rows": [
+      {
+        "content_id": "c_caa8cf09e323",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_caa8cf09e323",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_caa8cf09e323",
+          "creator_id": "eval_appeal_1",
+          "event": "appeal",
+          "reasoning": "Trial 3: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:46+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_64c2e6bcfd0a",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_64c2e6bcfd0a",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_64c2e6bcfd0a",
+          "creator_id": "eval_appeal_2",
+          "event": "appeal",
+          "reasoning": "Trial 3: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:46+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_fe6eb8eccb0a",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_fe6eb8eccb0a",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_fe6eb8eccb0a",
+          "creator_id": "eval_appeal_3",
+          "event": "appeal",
+          "reasoning": "Trial 3: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:46+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_2fc9f358d71f",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_2fc9f358d71f",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_2fc9f358d71f",
+          "creator_id": "eval_appeal_4",
+          "event": "appeal",
+          "reasoning": "Trial 3: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:46+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_7576bacc5df9",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_7576bacc5df9",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_7576bacc5df9",
+          "creator_id": "eval_appeal_5",
+          "event": "appeal",
+          "reasoning": "Trial 3: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:46+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_4a1dfef667e0",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_4a1dfef667e0",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_4a1dfef667e0",
+          "creator_id": "eval_appeal_6",
+          "event": "appeal",
+          "reasoning": "Trial 3: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:46+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_532c60cae14c",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_532c60cae14c",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_532c60cae14c",
+          "creator_id": "eval_appeal_7",
+          "event": "appeal",
+          "reasoning": "Trial 3: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:47+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_bc31eb27ec8d",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_bc31eb27ec8d",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_bc31eb27ec8d",
+          "creator_id": "eval_appeal_8",
+          "event": "appeal",
+          "reasoning": "Trial 3: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:47+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_617755751d72",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_617755751d72",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_617755751d72",
+          "creator_id": "eval_appeal_9",
+          "event": "appeal",
+          "reasoning": "Trial 3: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:47+00:00"
+        },
+        "pass": true
+      },
+      {
+        "content_id": "c_973e11193b09",
+        "status_code": 200,
+        "response": {
+          "content_id": "c_973e11193b09",
+          "message": "Thanks \u2014 your appeal has been recorded and a person will review this decision.",
+          "status": "under_review"
+        },
+        "log_entry": {
+          "content_id": "c_973e11193b09",
+          "creator_id": "eval_appeal_10",
+          "event": "appeal",
+          "reasoning": "Trial 3: I wrote this myself.",
+          "status": "under_review",
+          "timestamp": "2026-11-09T03:30:47+00:00"
+        },
+        "pass": true
+      }
+    ]
+  }
+]
