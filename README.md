@@ -260,6 +260,12 @@ $ curl "http://127.0.0.1:5000/log?limit=2"
 - *What came back:* It showed data where the student's scores and the AI texts' scores were almost the same, so any threshold that caught most of the AI text would also flag the student.
 - *What I changed:* I decided to raise the AI threshold to 0.75. That means some AI text will get through as "unsure", but I'd rather miss some AI writing than wrongly accuse a real student.
 
+**Moment 3 (unit 8): Marking "unsure" results in the attack run**
+
+- *What I asked for:* I asked AI how to record an attack when my system returned "unsure".
+- *What came back:* It laid out three ways to mark it: HELD, BROKE, or a separate PARTIAL category.
+- *What I changed:* I chose the strictest one and marked "unsure" as BROKE, because the system didn't give the clear judgment that test required. That moved my evasion count from 2 broken to 9 broken.
+
 <!-- ═══════════════════════ UNIT 8 — THE TEST ═══════════════════════ -->
 
 ---
@@ -609,6 +615,13 @@ What MF07's writer sees now:
 <!-- For each attack still getting through and each criterion still missed:
      what you'd do, and why you stopped. -->
 
+**9 evasions (EV01–09) and 3 prompt injections (PI01–03), mechanism A.** *What I'd do:* stop letting one fooled signal cancel the other. One option is a rule that flags text as "AI" when either signal is very high (say > 0.9) and the other isn't clearly human. Another is to strip a leading instruction-like line ("SYSTEM:", "Ignore all previous instructions") before scoring. *Why I stopped:* Milestone 5 allows one change. Also, every version of "catch more AI" I tried on paper moves my plain passages (0.64–0.69), FP02 and FP03 (0.73) toward the AI line, and criterion #1 is the one I care most about. I'd need more plain human samples before I trusted a new rule.
+
+**FP05, technical documentation labeled AI, mechanism C.** *What I'd do:* nothing at the threshold. Both signals agree at about 0.8, so only a different kind of signal would separate it, for example one that checks whether the text is instructions rather than an essay. *Why I stopped:* I don't have that signal, and raising the threshold to 0.80 to clear FP05 would let even more AI through. The label it gets does tell the writer they can appeal, and appeals work 10/10.
+
+**Criterion #2, score gap MISSED (0.099 vs 0.30), mechanism D.** *What I'd do:* replace or supplement gpt2 with a newer detector model, and recalibrate on current ChatGPT output instead of the generic "it is important to note" text I calibrated on in unit 7. *Why I stopped:* that is a new signal, not a fix, and well beyond one change. I'm keeping the 0.30 target. It's what a useful detector needs, and missing it is the honest result.
+
+**Rate limiting by `creator_id`.** Not an attack in the set that broke, but a real hole: a script that invents a new `creator_id` per request is never limited, and the attack set already behaves that way. *What I'd do:* add a second, looser per-IP limit alongside the per-creator one. *Why I stopped:* outside this unit's one change, and a per-IP limit needs care so a whole classroom on one network isn't blocked.
 
 
 **The trade I'd make if this ran for real:**
@@ -616,6 +629,7 @@ What MF07's writer sees now:
 <!-- Two sentences. Fewer wrong accusations means more AI text getting through.
      Say which way you'd go and WHO PAYS FOR IT. -->
 
+I would keep the threshold at 0.75 and put fewer wrong accusations first, because in this test none of my three plain-English passages was flagged as AI. The cost is that all ten ChatGPT paragraphs got through too, so someone who has AI write for them gets the same result as an honest writer, and the students who do their own work are the ones who pay for it.
 
 
 <!-- ═════════════════════════════════════════════════════════════════════
