@@ -20,24 +20,12 @@
 >
 > That's a web service. Something sent it text and it sent something back.
 > Everything this unit is filling in the middle.
->
-> **The rest of this file is your submission.** Fill it in as you go.
 
 ---
-
-<!-- ─────────────────────────────────────────────────────────────────────────
-     Unit 7 asks for the first five sections. Unit 8 adds the five below.
-
-     Everything is pasted as TEXT. A pasted curl response gets full credit;
-     a picture of your terminal gets none.
-     ───────────────────────────────────────────────────────────────────────── -->
 
 <!-- ═══════════════════════ UNIT 7 — THE BUILD ═══════════════════════ -->
 
 ## What This Does
-
-<!-- The path a submission takes, from arriving to the label a reader sees.
-     Six or seven steps — this is the trace you wrote in Milestone 1. -->
 
 1. **Arrive:** The user sends the text and their `creator_id` to `POST /submit`.
 
@@ -87,12 +75,6 @@ A real writer, for example a second-language student using simple, common words,
 
 ## Signals and Scoring
 
-<!-- For each signal: what property it measures, why that might differ between
-     human and AI writing, and WHAT IT CAN'T SEE.
-
-     The blind spot is not optional. If you can't name it you don't understand
-     the signal yet — and unit 8's attack set is built out of blind spots. -->
-
 ### Signal one — the model signal
 
 **What it measures:** How predictable the text is to a language model (gpt2). For each word, it checks how likely that word was given the words before it, and averages this into perplexity. Low perplexity means a high, AI-like score.
@@ -111,9 +93,6 @@ A real writer, for example a second-language student using simple, common words,
 
 ### The combining rule
 
-<!-- Write the rule in words, then give the numbers. What happens when the two
-     signals disagree? -->
-
 **The rule:** Average the two signals with equal weight, then use a high bar for "AI". When the two signals disagree, the average lands in the middle, and a wide "unsure" band catches it. I would rather let some AI text through than call a real student's work AI.
 
 **The numbers:** `combined = 0.5 × model_score + 0.5 × style_score`. Below 0.35 is "human", 0.35–0.75 is "unsure", above 0.75 is "AI". I raised the AI threshold from the starter's 0.65 to 0.75 because a plain, second-language-style paragraph I tested combined to 0.73, and my criteria.md #1 allows zero of those to be labeled AI.
@@ -131,23 +110,13 @@ The cost of this choice: clearly-AI and lightly-edited AI text also land in "uns
 
 **Where it lives:** `scoring.py::combine_signals`
 
-<!-- ⚠️ The grader checks your code against that line. If your rule lives
-     somewhere else, say where. -->
-
 **A case where my two signals split, and what my rule does with it:**
 
 A plain human paragraph with simple words but mixed sentence lengths ("I like football. On Saturday morning my brother and I go to the big park near our house and we play with our friends until it is time for lunch. It is fun. ...") scored **model 0.84** (simple words are predictable, so it looks AI) but **style 0.43** (the sentence lengths vary, so it looks human). The average is 0.63, which lands in "unsure" instead of accusing the writer.
 
-
-
 ---
 
 ## Label Variants
-
-<!-- The exact text of all three labels, as a reader would see them, and the
-     score range each covers.
-
-     Write them for someone who has never heard the word "threshold". -->
 
 | Label | Score range | The exact text a reader sees |
 |---|---|---|
@@ -156,26 +125,14 @@ A plain human paragraph with simple words but mixed sentence lengths ("I like fo
 | high-confidence AI | 0.75 – 1.00 | "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look." |
 
 **Why I worded the "unsure" one this way:**
-<!-- It's the hardest of the three. It has to admit uncertainty without
-     sounding like an accusation, because the person reading it may well have
-     written every word themselves. -->
 
 The student most likely to see this message is someone like the second-language writer I traced in Milestone 1 and later tested, so I start by saying it isn't a judgment about them. Otherwise "we can't tell" reads like a quiet accusation. I also name plain styles and second-language writing on purpose, because those are exactly the cases my system confuses with AI. Saying so is more honest than letting the student guess why they got this result.
-
 
 ---
 
 ## Sample Run
 
-<!-- One submission and one appeal, pasted as text: the request, the response,
-     and the log entries. -->
-
 **A submission**
-
-<!-- The response needs content_id, guess, confidence, label, AND both
-     signal scores - model_score and style_score. Unit 8's tools read those
-     two off the response, so leaving them out costs you next unit's
-     diagnostics. -->
 
 ```bash
 $ curl -X POST http://127.0.0.1:5000/submit \
@@ -275,22 +232,14 @@ $ curl "http://127.0.0.1:5000/log?limit=2"
 **My limits:** 5 per minute, 50 per day
 
 **Why those numbers and not others:**
-<!-- Think about two people: a real writer submitting their own work a few
-     times an hour, and a script sending a thousand variations to map your
-     thresholds. Your numbers have to be liveable for the first and hostile to
-     the second. -->
 
 A real writer checking their own work submits once, maybe edits and re-checks a few times. Five a minute covers that easily. A script trying to map my thresholds needs hundreds of slightly different submissions, and 5 a minute and 50 a day slows that to a crawl for any one creator. I didn't go lower (like 3 a minute) because someone fixing typos and re-checking quickly could hit it, and a blocked honest writer is the same kind of harm as a false accusation.
 
-**What a caller counts as:** <!-- per address, or per creator_id? They fail
-differently — one script can look like a thousand callers, and one household
-can look like one. -->
+**What a caller counts as:**
 
 Per `creator_id`, falling back to the caller's IP address when there isn't one. The weakness is that `creator_id` is whatever the caller sends, so a script that invents a new `creator_id` for every request is never limited. Counting by address would catch that, but would also lump a whole classroom behind one network into a single caller.
 
 **The run of status codes when I pushed past it:**
-
-<!-- python run_attacks.py --flood 15 -->
 
 ```
 $ python run_attacks.py --flood 15
@@ -315,9 +264,6 @@ The rejections are in the audit log:
 ---
 
 ## Attack Run — Before
-
-<!-- Every attack with its outcome and a held-or-broke mark.
-     `run_attacks.py --label before` produces the table. -->
 
 Full output: `results/attack_run_2026-11-08_2206_before.md` (produced by `run_attacks.py::main`).
 
@@ -389,8 +335,6 @@ No input crashed the service (no 500s).
 
 **Ten audit log entries from the run**
 
-<!-- Choose entries that show the interesting failures, not the ten easiest. -->
-
 ```json
 {"timestamp": "2026-11-09T03:06:34+00:00", "content_id": "c_afd349f4324a", "creator_id": "attacker_MF07", "guess": "ai", "model_score": 0.9064, "style_score": 0.75, "combined_score": 0.8282, "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.", "status": "decided"}
 {"timestamp": "2026-11-09T03:06:32+00:00", "content_id": "c_254882f6b428", "creator_id": "attacker_FP05", "guess": "ai", "model_score": 0.8005, "style_score": 0.7693, "combined_score": 0.7849, "label": "This text has a lot in common with AI-generated writing. Our tool can still get this wrong, so if you wrote it yourself, you can ask for a review and a person will take another look.", "status": "decided"}
@@ -411,12 +355,9 @@ whose work got caught by it:
 
 **MF07.** A short passage in Arabic got the high-confidence AI label (0.83), telling the writer their work "has a lot in common with AI-generated writing". My system was never built to read Arabic, yet instead of saying so, it confidently accused the writer. Anyone writing in a language other than English would get the same result.
 
-
 ---
 
 ## Run Log and Verdicts
-
-<!-- Your five criteria across three trials. `run_eval.py --label before`. -->
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
@@ -509,20 +450,6 @@ Criterion 5: the response to a missing `text` field, and the rejection entry it 
 
 **Diagnoses**
 
-<!-- For each miss AND each broken attack: the stage and the mechanism.
-
-     Your service has five stages: the route, signal one, signal two, the
-     combining rule, and the label mapping.
-
-     Not a diagnosis:  "The evasion attacks got through."
-     A diagnosis:      "Four evasion inputs got through. All four had typos
-                        added to AI-generated text. My second signal measures
-                        word variety, and typos raise word variety — so it read
-                        them as more human. My combining rule weights that
-                        signal at 0.6, so it dragged the whole score down."
-
-     Look for a pattern. Five failures on one signal is one problem, not five. -->
-
 **How I decided each verdict:** A criterion is MET only if the target held in all three trials. All three trials were identical, so no verdict depended on which trial I picked.
 
 - **#1 MET:** 0 of 10 of my passages were labeled AI in every trial, and 0 of the 3 plain ones. The margin is thin, though: the plain passages scored 0.64–0.69 against a 0.75 line. With the starter's 0.65 threshold, two of them would have been labeled AI.
@@ -545,7 +472,6 @@ Criterion 5: the response to a missing `text` field, and the rejection entry it 
 
 **D. The signals don't recognize current ChatGPT writing (criterion #2 MISSED).** *Stage: mainly signal one, partly signal two.* The ten ChatGPT paragraphs averaged model 0.41 and style 0.39. My calibration AI text in unit 7 was generic ("it is important to note...") and scored 0.79. This ChatGPT output is specific (a rice cooker, Saturn's rings, a 1974 factory shift) with varied sentence lengths, so gpt2, a small 2019 model, finds it as surprising as human writing. Signal one measures "generic and predictable", not "written by AI", and modern AI doesn't have to be generic.
 
-
 ---
 
 ## The Improvement
@@ -555,8 +481,6 @@ Criterion 5: the response to a missing `text` field, and the rejection entry it 
 **Which diagnosis pointed at it:** Mechanism B. The route accepted text that isn't English prose, and both signals then gave confident verdicts on it, including my worst outcome (MF07, Arabic text labeled AI). Before deploying, I ran the rule over every attack text and all 33 of my criteria texts. It refused only MF01–MF07 and none of the human or evasion texts.
 
 ### Attack Run — After
-
-<!-- Same format. `run_attacks.py --label after` -->
 
 Full output: `results/attack_run_2026-11-08_2235_after.md`. I mark the same way as before. Only these rows changed:
 
@@ -603,17 +527,9 @@ What MF07's writer sees now:
 
 **Did it help, and how do I know:** Yes, for what it targeted, and only that. Broken attacks went from 19 to 13. All six came from the malformed family, which went from 6 broken to 0, and my worst outcome (MF07) no longer accuses anyone. The criteria didn't move. #1 held because the rule didn't refuse any of my writing, and #2 is still missed because input validation can't change how the signals score real English. This was the safe fix, not the big one: the 9 evasions and 3 prompt injections (mechanism A) and FP05 (mechanism C) are untouched. The trade-off is that writers in other languages now get no result at all instead of a wrong one. I think that's honest, but it is a refusal of service.
 
-<!-- Widening the unsure band usually fixes one problem and creates another.
-     Reporting that trade honestly is worth full credit. -->
-
-
-
 ---
 
 ## What's Still Broken
-
-<!-- For each attack still getting through and each criterion still missed:
-     what you'd do, and why you stopped. -->
 
 **9 evasions (EV01–09) and 3 prompt injections (PI01–03), mechanism A.** *What I'd do:* stop letting one fooled signal cancel the other. One option is a rule that flags text as "AI" when either signal is very high (say > 0.9) and the other isn't clearly human. Another is to strip a leading instruction-like line ("SYSTEM:", "Ignore all previous instructions") before scoring. *Why I stopped:* Milestone 5 allows one change. Also, every version of "catch more AI" I tried on paper moves my plain passages (0.64–0.69), FP02 and FP03 (0.73) toward the AI line, and criterion #1 is the one I care most about. I'd need more plain human samples before I trusted a new rule.
 
@@ -623,47 +539,9 @@ What MF07's writer sees now:
 
 **Rate limiting by `creator_id`.** Not an attack in the set that broke, but a real hole: a script that invents a new `creator_id` per request is never limited, and the attack set already behaves that way. *What I'd do:* add a second, looser per-IP limit alongside the per-creator one. *Why I stopped:* outside this unit's one change, and a per-IP limit needs care so a whole classroom on one network isn't blocked.
 
-
 **The trade I'd make if this ran for real:**
 
-<!-- Two sentences. Fewer wrong accusations means more AI text getting through.
-     Say which way you'd go and WHO PAYS FOR IT. -->
-
 I would keep the threshold at 0.75 and put fewer wrong accusations first, because in this test none of my three plain-English passages was flagged as AI. The cost is that all ten ChatGPT paragraphs got through too, so someone who has AI write for them gets the same result as an honest writer, and the students who do their own work are the ones who pay for it.
-
-
-<!-- ═════════════════════════════════════════════════════════════════════
-
-     SUBMISSION CHECKLIST — unit 7
-
-       [ ] criteria.md has five numbered criteria, each naming a target
-       [ ] Each has a reason underneath
-       [ ] POST /submit returns content_id, guess, confidence, label,
-           model_score and style_score
-       [ ] Two signals that measure DIFFERENT things, each with a named blind spot
-       [ ] Three label variants, all reachable, written out in full
-       [ ] POST /appeal changes status and writes to the log
-       [ ] Signals and Scoring names scoring.py::combine_signals
-       [ ] Sample Run: a submission AND an appeal, as pasted text
-       [ ] At least four new commits
-       [ ] Repository URL submitted — WRITE IT DOWN
-
-     SUBMISSION CHECKLIST — unit 8
-
-       [ ] Rate limiting on /submit, with your numbers justified
-       [ ] The pasted run of status codes showing 429
-       [ ] Audit log with all nine fields, recording rejections too
-       [ ] The attack set run IN FULL, every input with an outcome
-       [ ] Ten audit log entries pasted as text
-       [ ] Five criteria across three trials
-       [ ] A diagnosis for every miss and every broken attack — stage AND mechanism
-       [ ] One improvement, with Attack Run — After
-       [ ] What's Still Broken, including the production trade
-       [ ] At least four new commits
-       [ ] The SAME repository URL as last unit
-
-     Do not delete and recreate this repository.
-     ═════════════════════════════════════════════════════════════════════ -->
 
 ---
 
